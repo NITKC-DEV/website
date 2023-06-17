@@ -2,5 +2,5 @@ tabWidth = 4
 insertPragma = true
 
 [[overrides]]
-files = ["*.json", "*.md", "*.yaml"]
+files = ["*.json", "*.md", "*.yaml", "*.html", "*.css"]
 options.tabWidth = 2
