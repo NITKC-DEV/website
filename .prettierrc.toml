@@ -1,0 +1,6 @@
+tabWidth = 4
+insertPragma = true
+
+[[overrides]]
+files = ["*.json", "*.md", "*.yaml"]
+options.tabWidth = 2
