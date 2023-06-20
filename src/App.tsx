@@ -14,16 +14,8 @@ import CivilEngineering from "./components/pages/departments/civil_engineering.t
 
 function RemoveTrailingSlash() {
     const location = useLocation();
-    if (location.pathname.match("/.*/$")) {
-        return (
-            <Navigate
-                to={{
-                    pathname: location.pathname.replace(/\/+$/, ""),
-                    search: location.search,
-                }}
-                replace
-            />
-        );
+    if (location.pathname.endsWith("/")) {
+        return <Navigate to={location.pathname.replace(/\/+$/, "")} replace />;
     }
     return null;
 }
