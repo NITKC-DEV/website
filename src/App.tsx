@@ -2,7 +2,7 @@
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, redirect } from "react-router-dom";
 import Header from "./components/modules/Header.tsx";
 import NotFound from "./components/pages/status/NotFound.tsx";
 import Home from "./components/pages/Home.tsx";
@@ -51,7 +51,9 @@ function App() {
                     </li>
                 </ul>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home />}>
+                        <Route path="*(/+)" loader={({ params }) => redirect(params["*"] || "/")} />
+                    </Route>
                     <Route path="/mechanical" element={<Mechanical />} />
                     <Route path="/electrical" element={<Electrical />} />
                     <Route path="/control_engineering" element={<ControlEngineering />} />
