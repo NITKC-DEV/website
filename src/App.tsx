@@ -2,7 +2,7 @@
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Routes, Route, Link, redirect } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import Header from "./components/modules/Header.tsx";
 import NotFound from "./components/pages/status/NotFound.tsx";
 import Home from "./components/pages/Home.tsx";
@@ -11,6 +11,22 @@ import Electrical from "./components/pages/departments/electrical.tsx";
 import ControlEngineering from "./components/pages/departments/control_engineering.tsx";
 import Information from "./components/pages/departments/information.tsx";
 import CivilEngineering from "./components/pages/departments/civil_engineering.tsx";
+
+function RemoveTrailingSlash() {
+    const location = useLocation();
+    if (location.pathname.match("/.*/$")) {
+        return (
+            <Navigate
+                to={{
+                    pathname: location.pathname.replace(/\/+$/, ""),
+                    search: location.search,
+                }}
+                replace
+            />
+        );
+    }
+    return null;
+}
 
 function App() {
     const theme = createTheme({
@@ -50,10 +66,9 @@ function App() {
                         <Link to="/civil_engineering">環境都市工学科</Link>
                     </li>
                 </ul>
+                <RemoveTrailingSlash />
                 <Routes>
-                    <Route path="/" element={<Home />}>
-                        <Route path="*(/+)" loader={({ params }) => redirect(params["*"] || "/")} />
-                    </Route>
+                    <Route path="/" element={<Home />} />
                     <Route path="/mechanical" element={<Mechanical />} />
                     <Route path="/electrical" element={<Electrical />} />
                     <Route path="/control_engineering" element={<ControlEngineering />} />
