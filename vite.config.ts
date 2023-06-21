@@ -8,6 +8,6 @@ export default defineConfig({
     base: process.env.GITHUB_PAGES ? "NITKC22s.github.io" : "./",
     plugins: [react()],
     build: {
-        outDir: "docs",
+        outDir: "dist",
     },
 });
