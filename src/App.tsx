@@ -51,7 +51,7 @@ function App() {
                     </li>
                 </ul>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route index element={<Home />} />
                     <Route path="/mechanical" element={<Mechanical />} />
                     <Route path="/electrical" element={<Electrical />} />
                     <Route path="/control_engineering" element={<ControlEngineering />} />
